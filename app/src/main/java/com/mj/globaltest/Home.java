@@ -21,18 +21,17 @@ public class Home extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.home);
 
-        mTestbutton1 = (Button) findViewById(R.id.button_test1);
+        mTestbutton1 = findViewById(R.id.button_test1);
         mTestbutton1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Toast.makeText(Home.this, "activity launched", Toast.LENGTH_SHORT).show();
                 Intent backIntent = new Intent(Home.this, Test1.class);
                 startActivity(backIntent);
-                finish();
             }
         });
         // Test button2 that will do the magic between the activity and the fragment
-        mTestbutton2 = (Button) findViewById(R.id.button_test2);
+        mTestbutton2 = findViewById(R.id.button_test2);
         mTestbutton2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -45,7 +44,7 @@ public class Home extends Activity {
             }
         });
         // Test card that works in the same way of the button2
-        mTestcard1 = (CardView) findViewById(R.id.card_test1);
+        mTestcard1 = findViewById(R.id.card_test1);
         mTestcard1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
