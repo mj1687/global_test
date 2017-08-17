@@ -16,6 +16,8 @@ public class Home extends Activity {
     private Button mTestbutton2;
     private CardView mTestcard1;
 
+    private String FGRAGMENT_1 = "fragment_1";
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -30,19 +32,6 @@ public class Home extends Activity {
                 startActivity(backIntent);
             }
         });
-        // Test button2 that will do the magic between the activity and the fragment
-        mTestbutton2 = findViewById(R.id.button_test2);
-        mTestbutton2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                setContentView(R.layout.container_layout);
-                TestFragment fg1 = new TestFragment();
-                FragmentManager fgManager = getFragmentManager();
-                FragmentTransaction fgTransaction = fgManager.beginTransaction();
-                fgTransaction.add(R.id.fgcontainer, fg1);
-                fgTransaction.commit();
-            }
-        });
         // Test card that works in the same way of the button2
         mTestcard1 = findViewById(R.id.card_test1);
         mTestcard1.setOnClickListener(new View.OnClickListener() {
@@ -50,11 +39,30 @@ public class Home extends Activity {
             public void onClick(View v) {
                 setContentView(R.layout.container_layout);
                 TestFragment fg1 = new TestFragment();
-                FragmentManager fgManager = getFragmentManager();
-                FragmentTransaction fgTransaction = fgManager.beginTransaction();
-                fgTransaction.add(R.id.fgcontainer, fg1);
-                fgTransaction.commit();
+                FragmentManager fmanager = getFragmentManager();
+                FragmentTransaction ftransaction = fmanager.beginTransaction();
+                fmanager.beginTransaction();
+                ftransaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
+                ftransaction.replace(R.id.fgcontainer, fg1, FGRAGMENT_1);
+                ftransaction.addToBackStack(fg1.getClass().getName());
+                ftransaction.commit();
             }
         });
+    }
+
+    @Override
+    public void onBackPressed() {
+        FragmentManager fmanager = getFragmentManager();
+        FragmentTransaction ftransaction = fmanager.beginTransaction();
+        TestFragment fg1 = new TestFragment();
+
+        if (fmanager.getBackStackEntryCount() > 0) {
+            ftransaction.remove(fg1);
+            ftransaction.commit();
+            Intent homeIntent = new Intent(Home.this, Home.class);
+            startActivity(homeIntent);
+        } else {
+            super.onBackPressed();
+        }
     }
 }
