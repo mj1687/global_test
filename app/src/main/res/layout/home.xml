@@ -35,7 +35,7 @@
             android:layout_marginLeft="110dp"
             android:layout_marginTop="30dp"
             android:fontFamily="sans-serif"
-            android:text="Test card that launch a fragment"
+            android:text="Fragment launcher"
             android:textSize="17sp"
             android:textStyle="normal|bold" />
 

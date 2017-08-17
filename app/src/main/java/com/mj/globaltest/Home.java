@@ -55,6 +55,7 @@ public class Home extends Activity {
         FragmentManager fmanager = getFragmentManager();
         FragmentTransaction ftransaction = fmanager.beginTransaction();
         TestFragment fg1 = new TestFragment();
+        Toast.makeText(Home.this, "welcome back home", Toast.LENGTH_SHORT).show();
 
         if (fmanager.getBackStackEntryCount() > 0) {
             ftransaction.remove(fg1);
