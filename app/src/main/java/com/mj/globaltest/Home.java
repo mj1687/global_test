@@ -32,6 +32,16 @@ public class Home extends Activity {
                 startActivity(backIntent);
             }
         });
+
+        mTestbutton2 = findViewById(R.id.button_test2);
+        mTestbutton2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent splashIntent = new Intent(Home.this, Splash.class);
+                startActivity(splashIntent);
+            }
+        });
+
         // Test card that works in the same way of the button2
         mTestcard1 = findViewById(R.id.card_test1);
         mTestcard1.setOnClickListener(new View.OnClickListener() {
